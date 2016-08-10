@@ -27,20 +27,17 @@ sed 's/bind-address\s*=\s127\.0\.0\.1/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
 rm /etc/mysql/my.cnf
 mv /etc/mysql/my.cnf.new /etc/mysql/my.cnf
 service mysql restart
-exit
 
 #Move vhost files
-function mysql_db_upload 
-{
-	cd /home/vagrant/databases/
-	regex="([a-zA-Z0-9_]*)"	
-	for filename in *.sql; do
-		if [[ $filename =~ $regex ]]	
-		then
-			NAME="${BASH_REMATCH[1]}"
-			exec "mysql --user=$DBUSER --host=$DBHOST --password=$DBPASSWD $NAME < $NAME.sql"
-		fi
-	done
-}
-mysql_db_upload
+cd /home/vagrant/databases/
+regexSql="([a-zA-Z0-9_]*)"	
+for fname in *.sql; do
+	if [[ $fname =~ $regexSql ]]	
+	then
+		NAME="${BASH_REMATCH[1]}"
+		echo "create database $NAME" | mysql --user=$DBUSER --host=$DBHOST --password=$DBPASSWD
+		mysql --user=$DBUSER --host=$DBHOST --password=$DBPASSWD $NAME < /home/vagrant/databases/$NAME.sql
+	fi
+done
+
 

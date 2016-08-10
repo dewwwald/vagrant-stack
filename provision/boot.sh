@@ -30,6 +30,7 @@ sudo apt-get install -yf php5 libapache2-mod-php5
 sudo a2enmod php5
 sudo apt-get install -yf php5-mcrypt
 sudo php5enmod mcrypt
+sudo apt-get install php5-intl
 sudo service apache2 restart
 
 echo "installing MySQL..."
