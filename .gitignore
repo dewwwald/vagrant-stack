@@ -1,0 +1,9 @@
+provision/databases/*
+!provision/databases/.gitkeep
+provision/vhosts/*
+!provision/vhosts/.gitkeep
+!provision/vhosts/example
+
+vm_build.log
+secretary
+.vagrant
