@@ -1,6 +1,5 @@
 # Variables
 DBHOST=localhost
-#DBNAME=dbname
 DBUSER=dewald
 DBPASSWD=password
 
@@ -16,8 +15,6 @@ debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multisel
 apt-get -y install mysql-server phpmyadmin >> /vagrant/vm_build.log 2>&1
 
 echo -e "\n--- Setting up our MySQL user and db ---\n"
-#mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME" >> /vagrant/vm_build.log 2>&1
-#mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'localhost' identified by '$DBPASSWD'" > /vagrant/vm_build.log 2>&1
 mysql -uroot -p$DBPASSWD -e "grant all privileges on *.* to '$DBUSER'@'%' identified by '$DBPASSWD'" > /vagrant/vm_build.log 2>&1
 
 
