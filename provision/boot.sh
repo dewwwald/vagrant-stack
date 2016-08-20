@@ -29,12 +29,18 @@ sudo a2enmod vhost_alias
 sudo apt-get install -yf php5 libapache2-mod-php5
 sudo a2enmod php5
 
+# System requirements
 sudo apt-get install -yf zip
 
+# PHP plugins
 sudo apt-get install -yf php5-mcrypt
 sudo php5enmod mcrypt
+sudo service apache2 restart
 
-sudo apt-get install php5-intl
+apt-get install -yf curl libcurl3 libcurl3-dev php5-curl
+sudo service apache2 restart
+
+sudo apt-get install -yf php5-intl
 sudo service apache2 restart
 
 echo "installing MySQL..."
