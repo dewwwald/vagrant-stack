@@ -12,9 +12,10 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder "~/work/sites", "/Vagrant/public_html", type: "nfs"
 
+  config.vm.provision "shell", path: "./provision/clean.sh"  
   config.vm.provision "shell", path: "./provision/boot.sh"  
   config.vm.provision "file", source: "./provision/vhosts", destination: "~/vhosts"
   config.vm.provision "shell", path: "./provision/hosts.sh"  
-  config.vm.provision "file", source: "./provision/databases", destination: "~/databases"
+  config.vm.provision "file", source: "./provision/databases/", destination: "~/databases/"
   config.vm.provision "shell", path: "./provision/mysql.sh"
 end
